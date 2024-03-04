@@ -6,8 +6,57 @@
     <title>AWLC Review</title>
   </head>
   <body>
-    <a href="https://g.page/r/Cet5aDhEfFMXEAI/review" target="_blank" class="button-link">Google Review</a>
-    <a href="https://www.yelp.com/writeareview/biz/LtFOMlaQnD2II5A0LovM6A?return_url=%2Fbiz%2FLtFOMlaQnD2II5A0LovM6A&review_origin=biz-details-war-button" target="_blank" class="button-link">Yelp Review</a>
+    <div id="link-container">
+      <script>
+        let params = new URLSearchParams(window.location.search);
+        let locationParam = params.get("location");
+        let yelpReview;
+        let googleReview;
+
+        switch (locationParam) {
+          /* Commented out for reference, query val should be RR, but default will should also point to Round Rock review*/
+          // case "RR":
+          //   break;
+          case "L":
+            yelpReview =
+              "https://www.yelp.com/writeareview/biz/Pk9kFyhDRuDqZSYyQ1i0ng?return_url=%2Fbiz%2FPk9kFyhDRuDqZSYyQ1i0ng&review_origin=biz-details-war-button";
+            googleReview = "https://g.page/r/Cet5aDhEfFMXEAI/review";
+            break;
+          case "NL":
+            yelpReview =
+              "https://www.yelp.com/writeareview/biz/6cR2Qipv6l4MODtmxSwThg?return_url=%2Fbiz%2F6cR2Qipv6l4MODtmxSwThg&review_origin=biz-details-war-button";
+            googleReview = "https://g.page/r/Cet5aDhEfFMXEAI/review";
+            break;
+          case "SM":
+            yelpReview =
+              "https://www.yelp.com/writeareview/biz/sqGPcMzkjBIdL9dxX-aX1w?return_url=%2Fbiz%2FsqGPcMzkjBIdL9dxX-aX1w&review_origin=biz-details-war-button";
+            googleReview = "https://g.page/r/Cet5aDhEfFMXEAI/review";
+            break;
+          default:
+            yelpReview =
+              "https://www.yelp.com/writeareview/biz/LtFOMlaQnD2II5A0LovM6A?return_url=%2Fbiz%2FLtFOMlaQnD2II5A0LovM6A&review_origin=biz-details-war-button";
+            googleReview = "https://g.page/r/Cet5aDhEfFMXEAI/review";
+            break;
+        }
+
+        /**
+         * Initializes a basic button.
+         * @param {string} href - The href
+         * @param {string} name - The name to display on the button
+         */
+        createButton = (href, name) => {
+          const button = document.createElement("a");
+          button.className = "button-link";
+          button.target = "_blank";
+          button.href = href;
+          button.textContent = name;
+          document.getElementById("link-container").appendChild(button); // Append to the container
+        };
+
+        createButton(googleReview, "Google Review");
+        createButton(yelpReview, "Yelp Review");
+      </script>
+    </div>
   </body>
 </html>
 
@@ -23,13 +72,14 @@
     background-color: black;
   }
   .button-link {
-    display: inline-block;
-    margin: 5px;
+    display: block; 
+    margin: 5px auto; 
     padding: 10px 20px;
     background-color: #007bff;
     color: white;
     text-decoration: none;
     border-radius: 5px;
+    text-align: center; 
   }
   .button-link:hover {
     background-color: #0056b3;
